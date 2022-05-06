@@ -10,9 +10,13 @@ const collegeSchema = new mongoose.Schema( {
         type:String,
         required:true
     },
-    logoLink:{
-        type:String,
-        required:true
+    logoLink: {
+        type: String,
+        validate: {
+            validator: value => validator.isURL(value, { protocols: ['http', 'https', 'ftp'], require_tld: true, require_protocol: true }),
+            message: 'Must be a Valid URL'
+        },
+        required: "Link is required"
     },
     isDeleted:{
         type:Boolean,

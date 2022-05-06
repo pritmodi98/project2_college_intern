@@ -17,6 +17,10 @@ const collegeReg=async function (req,res) {
         if (!validator.isValid(logoLink)) {
             return res.status(400).send({status:false,msg:'logolink is required'})
         }
+        let validLogoLink = await collegeModel.findOne({ logoLink });
+        if (validLogoLink) {
+            return res.status(400).send({ status: false, message: "Please provide valid URL." })
+        }
         const checkName=await collegeModel.findOne({name:name})
         if (checkName) {
             return res.status(400).send({status:false,msg:`${name} is already registered` })
