@@ -6,17 +6,13 @@ const isValid = function (value) {
   return true;
 };
 
-const isValidTitle = function (title) {
-  return ["Mr", "Mrs", "Miss" ].indexOf(title) !== -1;
-};
 
 const isValidRequestBody = function (requestBody) {
-  return Object.keys(requestBody).length > 0;
+   return Object.keys(requestBody).length > 0 ;
 };
-
 
 const isValidEmail=function(email){
     let mailFormate=/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/
     return mailFormate.test(email);
 }
-module.exports = { isValid,isValidTitle,isValidRequestBody,isValidEmail}
+module.exports = { isValid,isValidRequestBody,isValidEmail}
