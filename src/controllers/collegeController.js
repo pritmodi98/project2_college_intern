@@ -1,6 +1,5 @@
 const collegeModel = require("../models/collegeModel");
 const internModel = require("../models/InternModel");
-// const jwt = require("jsonwebtoken");
 const validator = require("../utils/validator");
 const collegeReg=async function (req,res) {
     try {
@@ -60,8 +59,9 @@ const internReg=async function (req,res) {
         if (!validator.isValid(collegeName)) {
             return res.status(400).send({status:false,msg:'collegeName is required'}) 
         }
-        if(mobile.length<10 && mobile.length>10){
-            return res.status(400).send({status:false,msg:'mobile number must be 10 digit'}) 
+        if (!/^\d{10}$/.test(mobile)) {
+            return res.status(400).send({status:false,msg:'please provide 10 digit mobile number'}) 
+            
         }
         const checkMobile=await internModel.findOne({mobile:mobile})
         if (checkMobile) {
