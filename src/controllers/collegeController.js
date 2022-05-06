@@ -99,11 +99,16 @@ const collegeDetails=async function (req,res) {
         if (!collegeData) {
             return res.status(404).send({status:false,msg:'college has not been registered yet'})
         }
-        for (const key in collegeData) {
-            if (['name','fullName','logoLink'].indexOf(key)!==-1) {
-                filteredData[key]=collegeData.key
-            }
-        }
+        // for (const key in collegeData) {
+        //     if (['name','fullName','logoLink'].indexOf(key)!==-1) {
+        //         filteredData[key]=collegeData.key
+        //     }
+        // }
+        filteredData['name']=collegeData.name
+        filteredData['fullName']=collegeData.fullName
+        filteredData['logoLink']=collegeData.logoLink
+
+
         const internData=await internModel.find({collegeId:collegeData._id}).select({_id:1,name:1,email:1,mobile:1})
         if (internData.length===0) {
             return res.status(404).send({status:false,msg:`no students have applied for internship from ${collegeName} college`})
