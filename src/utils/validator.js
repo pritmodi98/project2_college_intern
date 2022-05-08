@@ -6,13 +6,22 @@ const isValid = function (value) {
   return true;
 };
 
-
 const isValidRequestBody = function (requestBody) {
    return Object.keys(requestBody).length > 0 ;
 };
 
-const isValidEmail=function(email){
-    let mailFormate=/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/
-    return mailFormate.test(email);
+const isValidLogoLink=function (logoLink) {
+   let validUrl = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+   return validUrl.test(logoLink)
 }
-module.exports = { isValid,isValidRequestBody,isValidEmail}
+
+const isValidEmail=function(email){
+    let mailFormat=/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/
+    return mailFormat.test(email);
+}
+
+const isValidPhone=function (mobile) {
+   let mobileFormat=/^\d{10}$/
+   return mobileFormat.test(mobile)
+}
+module.exports = { isValid,isValidRequestBody,isValidEmail,isValidPhone,isValidLogoLink}
